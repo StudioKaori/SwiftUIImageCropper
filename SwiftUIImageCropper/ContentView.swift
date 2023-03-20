@@ -92,7 +92,11 @@ struct Cropper: UIViewControllerRepresentable {
   
   func makeUIViewController(context: Context) -> CropViewController {
     let cropper = CropViewController(image: image!)
-    //cropper.croppingStyle = .de
+    cropper.aspectRatioPreset = .presetSquare
+    cropper.aspectRatioLockEnabled = true
+    cropper.doneButtonTitle = "Save"
+    //cropper.aspectRatioPickerButtonHidden = true
+    
     cropper.delegate = context.coordinator
     return cropper
   }
