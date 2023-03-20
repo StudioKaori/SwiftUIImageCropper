@@ -32,11 +32,11 @@ struct ContentView: View {
       .sheet(isPresented: $showImagePicker) {
           ImagePicker(sourceType: .photoLibrary, image: $image, showImagePicker: $showImagePicker, showCropper: $showCropper)
       }
-//      .sheet(isPresented: $showCropper) {
-//          if let image = image {
-//              Cropper(image: image, showCropper: $showCropper, croppedImage: $image)
-//          }
-//      }
+      .sheet(isPresented: $showCropper) {
+          if let image = image {
+            Cropper(image: $image, showCropper: $showCropper)
+          }
+      }
   }
 
 }
@@ -80,6 +80,49 @@ struct ImagePicker: UIViewControllerRepresentable {
       print("image picked")
       parent.image = image
       picker.dismiss(animated: true)
+      parent.showCropper = true
+    }
+    
+  }
+}
+
+struct Cropper: UIViewControllerRepresentable {
+  @Binding var image: UIImage?
+  @Binding var showCropper: Bool
+  
+  func makeUIViewController(context: Context) -> CropViewController {
+    let cropper = CropViewController(image: image!)
+    //cropper.croppingStyle = .de
+    cropper.delegate = context.coordinator
+    return cropper
+  }
+  
+  func updateUIViewController(_ uiViewController: CropViewController, context: Context) {
+    
+  }
+  
+  func makeCoordinator() -> Coordinator {
+    Coordinator(self)
+  }
+  
+  class Coordinator: NSObject, CropViewControllerDelegate, UINavigationControllerDelegate {
+    let parent: Cropper
+    
+    init(_ parent: Cropper) {
+      self.parent = parent
+    }
+    
+    // CropViewControllerDelegate -> When the cancel button is pressed
+    func cropViewController(_ cropViewController: CropViewController, didFinishCancelled cancelled: Bool) {
+      print("crop canceled")
+      parent.showCropper = false
+    }
+    
+    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+      parent.showCropper = false
+      print("did crop")
+      
+      parent.image = image
     }
     
   }
