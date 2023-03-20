@@ -11,6 +11,7 @@
 		431A913A29C89AE1001A4BE3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431A913929C89AE1001A4BE3 /* ContentView.swift */; };
 		431A913C29C89AE2001A4BE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 431A913B29C89AE2001A4BE3 /* Assets.xcassets */; };
 		431A913F29C89AE2001A4BE3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 431A913E29C89AE2001A4BE3 /* Preview Assets.xcassets */; };
+		431A914929C89CA5001A4BE3 /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 431A914829C89CA5001A4BE3 /* CropViewController */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				431A914929C89CA5001A4BE3 /* CropViewController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +85,9 @@
 			dependencies = (
 			);
 			name = SwiftUIImageCropper;
+			packageProductDependencies = (
+				431A914829C89CA5001A4BE3 /* CropViewController */,
+			);
 			productName = SwiftUIImageCropper;
 			productReference = 431A913429C89AE1001A4BE3 /* SwiftUIImageCropper.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +116,9 @@
 				Base,
 			);
 			mainGroup = 431A912B29C89AE1001A4BE3;
+			packageReferences = (
+				431A914729C89CA5001A4BE3 /* XCRemoteSwiftPackageReference "TOCropViewController" */,
+			);
 			productRefGroup = 431A913529C89AE1001A4BE3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -339,6 +347,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		431A914729C89CA5001A4BE3 /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TimOliver/TOCropViewController";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		431A914829C89CA5001A4BE3 /* CropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 431A914729C89CA5001A4BE3 /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = CropViewController;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 431A912C29C89AE1001A4BE3 /* Project object */;
 }
